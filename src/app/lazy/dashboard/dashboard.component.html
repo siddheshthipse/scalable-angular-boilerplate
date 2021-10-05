@@ -1,4 +1,22 @@
 <h2>This one's the dashboard</h2>
 <p>
-    <strong>{{todaysDate | niceDateFormat}}</strong>
+    Date Pipe:-<strong>{{todaysDate | niceDateFormat}}</strong>
+</p>
+<p>
+    <button (click)="triggerError()">Client side error</button>
+</p>
+<p>
+    <button (click)="trigger404Error()">404 Http Error</button>
+</p>
+<h3>Kill the server before clicking this</h3>
+<p>
+    <button (click)="servernotfound()">Server Unavailaible</button>
+</p>
+<h3>-------------------------------------------------------------</h3>
+<p>
+    <button (click)="insertDataIntoAppState()">Insert Data to AppState</button>
+</p>
+<h3>--------------------------------------------------------------</h3>
+<p>
+    <button (click)="deleteDataFromAppState()">Delete Data from State</button>
 </p>

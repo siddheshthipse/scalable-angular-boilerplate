@@ -19,9 +19,6 @@ export class AuthComponent implements OnInit {
   constructor(private fb: FormBuilder,private router:Router) {}
 
   ngOnInit(): void {
-    localStorage.clear();
-    console.log('Hello from Auth');
-
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
@@ -32,7 +29,5 @@ export class AuthComponent implements OnInit {
   onSubmit() {
     this.userInfo.email=this.loginForm.value.email;
     this.userInfo.password=this.loginForm.value.password;
-    localStorage.setItem('currentUser',this.userInfo.email);
-    this.router.navigate(['dashboard']);
   }
 }

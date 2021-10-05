@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  hostURL:'http://localhost:4200/',
+  API_KEY:'345675svgr3453njk67',
+  env_name:'local',
+  //Configs for NGX Logger
+  serverLoggingUrl: 'http://localhost:3000/logs',
+  disableConsoleLogging: false
 };
 
 /*
