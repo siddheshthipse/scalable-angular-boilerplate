@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Login, Logout } from './auth.action';
+import { tap } from 'rxjs/operators';
+import { UserCredentials } from '../models/usercredentials.interface';
+import { AuthService } from '../services/auth.service';
+import { Login, Logout, Register } from './auth.action';
 
 export interface AuthStateModel {
   token: string | null;
@@ -16,6 +19,8 @@ export interface AuthStateModel {
 })
 @Injectable()
 export class AuthState {
+  constructor(private authservice:AuthService){}
+
   @Selector()
   static isAuthenticated(state: AuthStateModel): boolean {
     return !!state.token;
@@ -27,13 +32,15 @@ export class AuthState {
   }
   
   @Action(Login)
-  login(ctx: StateContext<AuthStateModel>, {payload}: Login) {
-    const state=ctx.getState();
-    ctx.setState({
-      ...state,
-      token:payload.token,
-      email:payload.email,
-    })
+  login(ctx:StateContext<AuthStateModel>,{payload}:Login){
+    return this.authservice.loginUser(payload).pipe(tap((returnData:UserCredentials)=>{
+      const state=ctx.getState();
+      ctx.setState({
+        ...state,
+        token:returnData.tokens[0].token,
+        email:returnData.email
+      })
+    }))
   }
 
   @Action(Logout)
@@ -44,6 +51,14 @@ export class AuthState {
       ...state,
       token:null,
       email:null,
+    })
+  }
+
+  @Action(Register)
+  register(ctx:StateContext<AuthStateModel>,{payload}:Register){
+    return this.authservice.submitregister(payload).subscribe((returnData)=>{
+      console.log('User registered succesfully');
+      console.log(returnData);
     })
   }
 }

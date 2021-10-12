@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserCredentials } from '../models/usercredentials.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
   }
 
   loginUser(body:{email:string,password:string}){
-    return this.http.post('http://localhost:3000/login',body,{observe:'body'});
+    return this.http.post<UserCredentials>('http://localhost:3000/login',body,{observe:'body'});
   }
 
   // ensureAuthenticated(){

@@ -1,4 +1,7 @@
 export interface UserCredentials{
     email:string;
-    password:string
+    tokens:{
+        _id:string,
+        token:string
+    }[]
 }
