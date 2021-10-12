@@ -7,6 +7,8 @@ import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './pages/error404/error404/error404.component';
 import { Error500Component } from './pages/error500/error500/error500.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { Error500Component } from './pages/error500/error500/error500.component'
     CoreModule,
     RouterModule
   ],
-  providers: [],
+  providers: [AuthGuard,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

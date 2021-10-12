@@ -1,0 +1,29 @@
+<h3>Register to get started</h3>
+<h5 style="color: gray;">Already have an Account? <a routerLink='/auth/login'>Sign In</a></h5>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <p>
+        <label for="email">Email</label>
+        <br><br>
+        <input type="email" placeholder="example@abc.com" formControlName="email">
+    </p>
+
+    <p>
+        <label for="username">Username</label>
+        <br><br>
+        <input type="text" placeholder="Username" formControlName="username">
+    </p>
+
+    <p>
+        <label for="password">Password</label>
+        <br><br>
+        <input type="password" placeholder="Password" formControlName="password">
+    </p>
+
+    <p>
+        <label for="confirmpassword">Confirm Password</label>
+        <br><br>
+        <input type="password" placeholder="Confirm Password" formControlName="confirmpassword">
+    </p>
+
+    <button type="submit">Register</button>
+</form>

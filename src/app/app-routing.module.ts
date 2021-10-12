@@ -6,12 +6,12 @@ import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
     loadChildren: () =>
       import('./lazy/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'dashboard',
+    path: '',
     loadChildren: () =>
       import('./lazy/dashboard/dashboard.module').then(
         (m) => m.DashboardModule

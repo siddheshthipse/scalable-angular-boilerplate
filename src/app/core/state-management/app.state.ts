@@ -40,7 +40,6 @@ export class AppState {
     deleteDataFromState(ctx: StateContext<AppStateModel>, { id }: DeleteData) {
         return this.hs.deleteData(id).pipe(tap(returnData => {
             const state=ctx.getState();
-            console.log("The is is",id)
             //Here we will create a new Array called filteredArray which won't contain the given id and set it equal to state.todo
             const filteredArray=state.data.filter((contents: { id: number; })=>contents.id!==id);
 

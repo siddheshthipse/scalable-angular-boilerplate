@@ -5,11 +5,12 @@
 export const environment = {
   production: false,
   hostURL:'http://localhost:4200/',
-  API_KEY:'345675svgr3453njk67',
   env_name:'local',
   //Configs for NGX Logger
-  serverLoggingUrl: 'http://localhost:3000/logs',
-  disableConsoleLogging: false
+  serverLoggingUrl: 'http://localhost:8000/logs',
+  disableConsoleLogging: false,
+  disableloggerplugin:false,
+  message:'YOU ARE IN DEVELOPEMENT MODE'
 };
 
 /*

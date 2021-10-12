@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NiceDateFormatPipe } from './pipes/nice-date-format.pipe';
-
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -9,7 +9,8 @@ import { NiceDateFormatPipe } from './pipes/nice-date-format.pipe';
     NiceDateFormatPipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports:[
     NiceDateFormatPipe

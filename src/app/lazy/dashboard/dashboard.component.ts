@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Router } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
 import { HttpService } from 'src/app/core/services/http.service';
-import { DeleteData, GetData } from 'src/app/core/state-management/app.action';
-import { environment } from 'src/environments/environment';
+import { DashboardFascade } from './dashboard.fascade';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,58 +10,51 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  todaysDate = new Date('2021-10-04');
+  loggedInUser:any;
+  // todaysDate = new Date('2021-10-08');
   constructor(
     private hs: HttpService,
-    private store: Store,
-    private logger: NGXLogger
+    private logger: NGXLogger,
+    private dfascade:DashboardFascade,
+    private router:Router,
   ) {}
 
   ngOnInit(): void {
-    this.logger.log('Hello');
-    this.logger.log(environment.env_name);
+    this.logger.log('Welcome to Dashboard');
+  }
 
-    this.hs.getData().subscribe(
-      (response) => {
-        this.logger.log(response);
-      },
-      (error) => {
-        this.logger.error(error);
-      }
-    );
+  //This is temporary code
+
+  logout(){
+    if(confirm('Are you sure you want to Logout')){
+      this.dfascade.logout();
+      this.router.navigate(['auth/login']);
+    }else{
+      return;
+    }    
   }
 
   triggerError() {
     throw Error('An error has been triggered');
   }
 
-  trigger404Error() {
-    this.hs.give404Error().subscribe(
-      (response) => {
-        this.logger.log('I wont be visible in console');
-      },
-      (error) => {
-        this.logger.error('Resource not found');
-      }
-    );
+  badRequest(){
+    this.dfascade.badRequestError();
   }
 
-  servernotfound() {
-    this.hs.getData().subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        this.logger.error('Internal Server Error');
-      }
-    );
+  resourceNotFound(){
+    this.dfascade.resourceNotFoundError();
   }
 
-  insertDataIntoAppState() {
-    this.store.dispatch(new GetData());
+  internalServerError(){
+    this.dfascade.internalServerError();
   }
 
-  deleteDataFromAppState() {
-    this.store.dispatch(new DeleteData(2));
+  insertDataIntoAppState(){
+    this.dfascade.insert()
+  }
+
+  deleteDataFromAppState(){
+    this.dfascade.delete(2);
   }
 }

@@ -1,4 +1,4 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ErrorhandlingService } from './errorhandler/errorhandling.service';
@@ -10,6 +10,8 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { environment } from 'src/environments/environment';
 import { AppState } from './state-management/app.state';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { AuthState } from './state-management/auth.state';
+import { EnsureModuleLoadedOnceGuard } from './core-guard/ensure-module-loaded-once.guard';
 
 @NgModule({
   declarations: [
@@ -18,10 +20,10 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
     CommonModule,
     HttpClientModule,
     ButtonModule,
-    NgxsModule.forRoot([AppState], {
-      developmentMode: !environment.production
+    NgxsModule.forRoot([AppState,AuthState], {
+      developmentMode: !environment.production,
     }),
-    NgxsLoggerPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot({disabled:environment.disableloggerplugin}),
     LoggerModule.forRoot({
       serverLoggingUrl: environment.serverLoggingUrl,
       level: NgxLoggerLevel.TRACE,
@@ -42,4 +44,9 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
     }
   ]
 })
-export class CoreModule { }
+export class CoreModule extends EnsureModuleLoadedOnceGuard{ 
+  // Looks for the module in the parent injector to see if it's already been loaded (only want it loaded once)
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    super(parentModule);
+  }
+}

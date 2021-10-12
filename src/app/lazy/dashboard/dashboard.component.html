@@ -1,22 +1,28 @@
 <h2>This one's the dashboard</h2>
 <p>
-    Date Pipe:-<strong>{{todaysDate | niceDateFormat}}</strong>
+    <button (click)="logout()">Logout</button>
 </p>
 <p>
     <button (click)="triggerError()">Client side error</button>
 </p>
+<h3>---------------------------Client Side Errors-------------------------------</h3>
 <p>
-    <button (click)="trigger404Error()">404 Http Error</button>
+    <button (click)="badRequest()">400 Error</button>
 </p>
-<h3>Kill the server before clicking this</h3>
 <p>
-    <button (click)="servernotfound()">Server Unavailaible</button>
+    <button routerLink='randomPage'>404 Error</button>
 </p>
-<h3>-------------------------------------------------------------</h3>
+<h3>----------------------------Server Side Errors--------------------------------</h3>
+<p>
+    <button (click)="resourceNotFound()">404 Error</button>
+</p>
+<p>
+    <button (click)="internalServerError()">500 Error</button>
+</p>
+<h3>---------------------------State Management----------------------------------</h3>
 <p>
     <button (click)="insertDataIntoAppState()">Insert Data to AppState</button>
 </p>
-<h3>--------------------------------------------------------------</h3>
 <p>
     <button (click)="deleteDataFromAppState()">Delete Data from State</button>
 </p>
