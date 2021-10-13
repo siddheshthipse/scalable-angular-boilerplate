@@ -10,8 +10,11 @@ import { DashboardFascade } from './dashboard.fascade';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  loggedInUser:any;
-  // todaysDate = new Date('2021-10-08');
+  // loggedInUser:any;
+  assignedDate=new Date(2018, 9, 13, 9, 33, 30, 0);
+  deadlineDate=new Date(2021, 9, 31, 23, 0, 0, 0);
+
+
   constructor(
     private hs: HttpService,
     private logger: NGXLogger,
