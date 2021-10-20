@@ -26,6 +26,7 @@ export class DashboardFascade {
 
   logout(){
     this.cookieService.delete('token', '/');
+    this.cookieService.delete('email', '/');
     this.store.dispatch(new Logout());
   }
 

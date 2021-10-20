@@ -10,8 +10,7 @@ export class ErrorhandlingService implements ErrorHandler{
 
   handleError(error:Error){
     if(error){
-      this.logger.error('Client side error has occured');
-      alert(error.message);
+      this.logger.error(error);
     }
   }
 }

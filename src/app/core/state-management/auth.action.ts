@@ -11,3 +11,11 @@ export class Register{
   static readonly type='[Register] Auth';
   constructor(public payload:any){};
 }
+
+export class GetCookie{
+  static readonly type='[GetCookie] Auth';
+}
+
+export class EnsureAuthenticated{
+  static readonly type='[EnsureAuth] Auth';
+}

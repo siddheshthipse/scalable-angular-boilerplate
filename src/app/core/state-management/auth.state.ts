@@ -3,7 +3,8 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { UserCredentials } from '../models/usercredentials.interface';
 import { AuthService } from '../services/auth.service';
-import { Login, Logout, Register } from './auth.action';
+import { EnsureAuthenticated, GetCookie, Login, Logout, Register } from './auth.action';
+import { CookieService } from 'ngx-cookie-service';
 
 export interface AuthStateModel {
   token: string | null;
@@ -19,7 +20,7 @@ export interface AuthStateModel {
 })
 @Injectable()
 export class AuthState {
-  constructor(private authservice:AuthService){}
+  constructor(private authservice:AuthService,private cookieService:CookieService){}
 
   @Selector()
   static isAuthenticated(state: AuthStateModel): boolean {
@@ -31,6 +32,18 @@ export class AuthState {
     return state;
   }
   
+  @Action(GetCookie)
+  getCookie(ctx:StateContext<AuthStateModel>){
+    if(!!this.cookieService.get('token')){
+      const state=ctx.getState();
+      ctx.setState({
+        ...state,
+        token:this.cookieService.get('token'),
+        email:this.cookieService.get('email')
+      })
+    }
+  }
+
   @Action(Login)
   login(ctx:StateContext<AuthStateModel>,{payload}:Login){
     return this.authservice.loginUser(payload).pipe(tap((returnData:UserCredentials)=>{
@@ -57,8 +70,17 @@ export class AuthState {
   @Action(Register)
   register(ctx:StateContext<AuthStateModel>,{payload}:Register){
     return this.authservice.submitregister(payload).subscribe((returnData)=>{
-      console.log('User registered succesfully');
+      console.log('User registered succesfully888');
       console.log(returnData);
     })
+  }
+
+  @Action(EnsureAuthenticated)
+  ensureAuth(ctx:StateContext<AuthStateModel>){
+    console.log('Called Ensure Auth')
+    return this.authservice.ensureAuth().pipe(tap((res)=>{
+      console.log('Inside EA');
+      console.log(res);
+    }));
   }
 }

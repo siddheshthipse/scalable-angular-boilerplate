@@ -12,6 +12,7 @@ import { AppState } from './state-management/app.state';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { AuthState } from './state-management/auth.state';
 import { EnsureModuleLoadedOnceGuard } from './core-guard/ensure-module-loaded-once.guard';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,11 @@ import { EnsureModuleLoadedOnceGuard } from './core-guard/ensure-module-loaded-o
     {
       provide:HTTP_INTERCEPTORS,
       useClass:ErrorInterceptor,
+      multi:true
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
       multi:true
     }
   ]

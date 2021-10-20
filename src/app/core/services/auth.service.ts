@@ -6,17 +6,29 @@ import { UserCredentials } from '../models/usercredentials.interface';
   providedIn: 'root'
 })
 export class AuthService {
-
+  apiURL:string='http://localhost:3000';
   constructor(private http:HttpClient) { }
 
   //Belongs to NodeJS
   submitregister(body:any){
-    return this.http.post('http://localhost:3000/users',body,{observe:'body'})
+    return this.http.post(`${this.apiURL}/users`,body,{observe:'body'})
   }
 
   loginUser(body:{email:string,password:string}){
-    return this.http.post<UserCredentials>('http://localhost:3000/login',body,{observe:'body'});
+    return this.http.post<UserCredentials>(`${this.apiURL}/login`,body,{observe:'body'});
   }
+
+  ensureAuth(){
+    return this.http.get(`${this.apiURL}/verifyuser`);
+  }
+
+  outlook(){
+    return this.http.get(`${this.apiURL}/auth/outlook`);
+  }
+
+  // backendCookie(){
+  //   return this.http.get('http://localhost:3000/signin');
+  // }
 
   // ensureAuthenticated(){
   //   return this.http.get('http://localhost:3000/verifyid',{

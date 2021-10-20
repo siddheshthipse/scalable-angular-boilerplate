@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Error404Component } from './pages/error404/error404/error404.component';
-import { Error500Component } from './pages/error500/error500/error500.component';
+import { SampleComponent } from './sample/sample.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { VerifyUserGuard } from './shared/guards/verify-user.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
       import('./lazy/auth/auth.module').then((m) => m.AuthModule),
+    data:{title:'Welcome to ProjectX'}
   },
   {
     path: '',
@@ -16,11 +18,14 @@ const routes: Routes = [
       import('./lazy/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
-    canActivate:[AuthGuard]
+    data:{title:'Dashboard'},
+    canActivate:[]
   },
   {
-    path:'error500',
-    component:Error500Component
+    path:'sample',
+    component:SampleComponent,
+    data:{title:'Sample'},
+    canActivate:[VerifyUserGuard]
   },
   {
     path:'**',
