@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ErrorhandlingService } from './errorhandler/errorhandling.service';
 import { HttpService } from './services/http.service';
-import {ButtonModule} from 'primeng/button';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
@@ -20,7 +19,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
   imports: [
     CommonModule,
     HttpClientModule,
-    ButtonModule,
     NgxsModule.forRoot([AppState,AuthState], {
       developmentMode: !environment.production,
     }),

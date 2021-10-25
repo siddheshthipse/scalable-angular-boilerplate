@@ -47,6 +47,7 @@ export class AuthState {
   @Action(Login)
   login(ctx:StateContext<AuthStateModel>,{payload}:Login){
     return this.authservice.loginUser(payload).pipe(tap((returnData:UserCredentials)=>{
+      console.log(returnData);
       const state=ctx.getState();
       ctx.setState({
         ...state,

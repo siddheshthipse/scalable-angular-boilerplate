@@ -21,12 +21,13 @@ export class VerifyUserGuard implements CanActivate {
       verified=returnData;
     })
 
-    console.log(verified);
-    if(verified){
-      console.log('if block verified')
-      return verified;
-    }else{
-      return false;
-    }
+    // console.log(verified);
+    // if(verified){
+    //   console.log('if block verified')
+    //   return verified;
+    // }else{
+    //   return false;
+    // }
+    return true;
   }
 }

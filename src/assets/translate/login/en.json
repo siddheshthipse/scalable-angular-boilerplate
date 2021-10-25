@@ -1,0 +1,13 @@
+{
+    "login":{
+        "main":"Enter your credentials to login",
+        "subheading1":"Don't have an Account?",
+        "subheading2":"Create One",
+        "loginform":{
+            "email":"Email",
+            "password":"Password",
+            "login":"Login"
+        },
+        "outlooktext":"Sign in with Outlook"
+    }
+}

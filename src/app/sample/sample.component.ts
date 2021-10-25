@@ -10,6 +10,7 @@ export class SampleComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('This is sample component');
   }
 
 }
