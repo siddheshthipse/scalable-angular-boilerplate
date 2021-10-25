@@ -10,6 +10,8 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { SampleComponent } from './sample/sample.component';
 import { LangTranslateModule } from './lang-translate/lang-translate.module';
+import { AbilityModule } from '@casl/angular';
+import { Ability, PureAbility } from '@casl/ability';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,16 @@ import { LangTranslateModule } from './lang-translate/lang-translate.module';
     AppRoutingModule,
     CoreModule,
     RouterModule,
-    LangTranslateModule
+    LangTranslateModule,
+    AbilityModule
   ],
-  providers: [AuthGuard,CookieService,Title],
+  providers: [
+    AuthGuard,
+    CookieService,
+    Title,
+    { provide: Ability, useValue: new Ability() },
+    { provide: PureAbility, useExisting: Ability }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
