@@ -10,8 +10,8 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { SampleComponent } from './sample/sample.component';
 import { LangTranslateModule } from './lang-translate/lang-translate.module';
-import { AbilityModule } from '@casl/angular';
 import { Ability, PureAbility } from '@casl/ability';
+import { AbilityModule } from '@casl/angular';
 
 @NgModule({
   declarations: [

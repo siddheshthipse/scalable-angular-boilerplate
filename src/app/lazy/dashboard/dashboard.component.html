@@ -1,6 +1,10 @@
-<h2>This one's the dashboard</h2>
+<h2>{{"dashboard.heading" | translate}}</h2>
 
-<a routerLink='/sample'>Go to Sample</a>
+
+<div *ngIf="'manage' | able: 'all'">
+    <h2>Welcome Admin</h2>
+    <a routerLink='/sample'>Go to Sample</a>
+</div>
 <h3>-------------------Date Pipe--------------------------------</h3>
 <p>
     Task was assigned <strong>{{assignedDate | niceDateFormat}}</strong>

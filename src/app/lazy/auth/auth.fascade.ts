@@ -19,8 +19,8 @@ export class AuthFascade {
       this.userCredentials=returnData.authstate;
 
       if(returnData.authstate.email){
-        this.cookieService.set('token',this.userCredentials.token,{expires:0.001,path:'/'});
-        this.cookieService.set('email',this.userCredentials.email,{expires:0.001,path:'/'});
+        this.cookieService.set('token',this.userCredentials.token,{expires:0.1,path:'/'});
+        this.cookieService.set('email',this.userCredentials.email,{expires:0.1,path:'/'});
         this.router.navigate(['']);
       }
     },(error)=>{

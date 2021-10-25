@@ -19,7 +19,7 @@ const routes: Routes = [
         (m) => m.DashboardModule
       ),
     data:{title:'Dashboard'},
-    canActivate:[]
+    canActivate:[AuthGuard]
   },
   {
     path:'sample',

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Ability, AbilityBuilder } from '@casl/ability';
 
 @Component({
   selector: 'app-sample',

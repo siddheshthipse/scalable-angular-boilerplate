@@ -13,6 +13,7 @@ import { AuthState } from './state-management/auth.state';
 import { EnsureModuleLoadedOnceGuard } from './core-guard/ensure-module-loaded-once.guard';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
+
 @NgModule({
   declarations: [
   ],
@@ -28,7 +29,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
       level: NgxLoggerLevel.TRACE,
       serverLogLevel: NgxLoggerLevel.WARN,
       disableConsoleLogging: environment.disableConsoleLogging
-    })
+    }),
   ],
   providers:[
     HttpService,
@@ -45,7 +46,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
       provide:HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,
       multi:true
-    }
+    },
   ]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard{ 

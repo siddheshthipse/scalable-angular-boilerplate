@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Ability, AbilityBuilder } from '@casl/ability';
 import { NGXLogger } from 'ngx-logger';
 import { ExportCsv, JsonReducer } from 'src/app/core/helpers/helper';
+import { AbilityService } from 'src/app/core/services/ability.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { DashboardFascade } from './dashboard.fascade';
 
@@ -11,7 +13,8 @@ import { DashboardFascade } from './dashboard.fascade';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  // loggedInUser:any;
+  loggedInUser:any;
+  userflag:boolean=false;
   assignedDate = new Date(2021, 9, 1, 9, 33, 30, 0);
   deadlineDate = new Date(2021, 9, 31, 23, 0, 0, 0);
 
@@ -19,14 +22,22 @@ export class DashboardComponent implements OnInit {
     private hs: HttpService,
     private logger: NGXLogger,
     private dfascade: DashboardFascade,
-    private router: Router
+    private router: Router,
+    private abilityservice:AbilityService
   ) {}
 
   ngOnInit(): void {
     this.logger.log('Welcome to Dashboard');
-    this.test();
+    //Helper Function Code
+    // this.test();
+    this.loggedInUser=this.dfascade.getLoggedInUserDetails()
+    this.assignAbilities(this.loggedInUser);
   }
 
+  assignAbilities(user:any){
+    this.abilityservice.setUserAbility(user.email)
+    
+  }
   //This is temporary code
 
   logout() {

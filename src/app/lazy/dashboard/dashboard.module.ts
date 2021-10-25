@@ -6,6 +6,8 @@ import {RouterModule} from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DashboardFascade } from './dashboard.fascade';
+import { AbilityModule } from '@casl/angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { DashboardFascade } from './dashboard.fascade';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    AbilityModule,
+    TranslateModule
   ],
   providers:[
     DashboardFascade

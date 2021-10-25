@@ -13,9 +13,10 @@ export class AuthGuard implements CanActivate {
   constructor(private store:Store, private router:Router,private cookieservice:CookieService){}
 
   canActivate():boolean{
+    
     const helper = new JwtHelperService();
     if(helper.isTokenExpired(this.cookieservice.get('token'))){
-      alert('Your token has expired');
+      // alert('Your token has expired');
       this.router.navigate(['auth/login'])
       return false;
     }else{
