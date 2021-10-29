@@ -1,27 +1,37 @@
-<h3>{{'login.main' | translate}}</h3>
-<h5 style="color: gray;">{{'login.subheading1' | translate}}<a routerLink='/auth/register'> {{'login.subheading2' | translate}}</a></h5>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <p>
-        <label for="email">{{'login.loginform.email' | translate}}</label>
-        <br><br>
-        <input type="text" id="email" name="email" placeholder="example@abc.com" formControlName="email">
-    </p>
-
-    <p>
-        <label for="password">{{'login.loginform.password' | translate}}</label>
-        <br><br>
-        <input type="password" placeholder="Password" formControlName="password">
-    </p>
-
-    <button type="submit">{{'login.loginform.login' | translate}}</button>
-</form>
-
-<p>
-    <a href="http://localhost:3000/auth/outlook">{{'login.outlooktext' | translate}}</a>
-</p>
-<p>
-    <button (click)="selectedLanguage('en')">English</button>
-</p>
-<p>
-    <button (click)="selectedLanguage('de')">German</button>
-</p>
+<div nz-row nzJustify="center">
+    <div nz-col nzSpan="7" style="margin-top: 90px;padding: 30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 10px;">
+        <h4 nz-typography>Project<span style="color: red;">X</span></h4>
+        <h5 nz-typography style="color: gray;">Please login to continue</h5>
+        <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please enter you Email">
+                    <nz-input-group nzPrefixIcon="user">
+                        <input type="email" nz-input formControlName="email" placeholder="example@gmail.com" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please enter you Password">
+                    <nz-input-group nzPrefixIcon="lock">
+                        <input type="password" nz-input formControlName="password" placeholder="Password" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <div nz-row class="login-form-margin">
+                <div nz-col [nzSpan]="12">
+                    <label nz-checkbox>
+                        <span>Remember me</span>
+                    </label>
+                </div>
+                <div nz-col [nzSpan]="12">
+                    <a class="login-form-forgot">Forgot password</a>
+                </div>
+            </div>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+            <br>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" style="background-color: #026FC0;border-color: #026FC0;"><a href="http://localhost:3000/auth/outlook">Sign In with Outlook</a></button>
+            Or
+            <a routerLink='/auth/register'>Create Account</a>
+        </form>
+    </div>
+</div>

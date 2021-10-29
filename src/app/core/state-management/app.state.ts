@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { HttpService } from '../services/http.service';
-import { DeleteData, GetData } from './app.action';
+import { AddData, DeleteData, GetData } from './app.action';
 
 export class AppStateModel {
   data: any;
@@ -25,6 +25,12 @@ export class AppState {
 
   @Action(GetData)
   insertDataIntoState(ctx: StateContext<AppStateModel>, {}: GetData) {
+    const state=ctx.getState();
+    const array:any[]=state.data;
+    if(array.length!=0){
+      return;
+    }
+
     return this.hs.getData().pipe(
       tap((returnData) => {
         const state = ctx.getState();
@@ -34,6 +40,16 @@ export class AppState {
         });
       })
     );
+  }
+
+  @Action(AddData)
+  addDataToState(ctx:StateContext<AppStateModel>,{payload}:AddData){
+    return this.hs.postData(payload).pipe(tap(returnData=>{
+      const state=ctx.getState();
+      ctx.patchState({
+        data:[...state.data,returnData]
+      })
+    }))
   }
 
   @Action(DeleteData)

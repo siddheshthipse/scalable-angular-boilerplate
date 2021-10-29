@@ -18,8 +18,8 @@ const routes: Routes = [
       import('./lazy/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
-    data:{title:'Dashboard'},
-    canActivate:[AuthGuard]
+    data:{title:'Dashboard | ProjectX'},
+    canActivate:[]
   },
   {
     path:'sample',

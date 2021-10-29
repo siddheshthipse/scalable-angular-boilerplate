@@ -1,40 +1,54 @@
-<h2>{{"dashboard.heading" | translate}}</h2>
-
-
-<div *ngIf="'manage' | able: 'all'">
-    <h2>Welcome Admin</h2>
-    <a routerLink='/sample'>Go to Sample</a>
-</div>
-<h3>-------------------Date Pipe--------------------------------</h3>
-<p>
-    Task was assigned <strong>{{assignedDate | niceDateFormat}}</strong>
-    <br><br>
-    Deadline for the task is <strong>{{deadlineDate | niceDeadlineFormat}}</strong>
-</p>
-<p>
-    <button (click)="logout()">Logout</button>
-</p>
-<p>
-    <button (click)="triggerError()">Client side error</button>
-</p>
-<h3>---------------------------Client Side Errors-------------------------------</h3>
-<p>
-    <button (click)="badRequest()">400 Error</button>
-</p>
-<p>
-    <button routerLink='randomPage'>404 Error</button>
-</p>
-<h3>----------------------------Server Side Errors--------------------------------</h3>
-<p>
-    <button (click)="resourceNotFound()">404 Error</button>
-</p>
-<p>
-    <button (click)="internalServerError()">500 Error</button>
-</p>
-<h3>---------------------------State Management----------------------------------</h3>
-<p>
-    <button (click)="insertDataIntoAppState()">Insert Data to AppState</button>
-</p>
-<p>
-    <button (click)="deleteDataFromAppState()">Delete Data from State</button>
-</p>
+<nz-layout class="app-layout">
+    <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+        [nzTrigger]="null">
+        <div class="sidebar-logo">
+            <a href="https://ng.ant.design/" target="_blank">
+                <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_5b14079723e45431c5c5c0f202aa2b90/ktern.png"
+                    alt="logo">
+                <h1>Project<span style="color: red;">X</span></h1>
+            </a>
+        </div>
+        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+                <ul>
+                    <div *ngIf="'manage' | able: 'all'">
+                        <li nz-menu-item nzMatchRouter>
+                            <a>Admin Dashboard</a>
+                        </li>
+                    </div>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink='workspace'>My Workspace</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink='caching'>Features</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a>Issue Tracker</a>
+                    </li>
+                </ul>
+            </li>
+            <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a>Basic Form</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header>
+            <div class="app-header">
+                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+                    <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+                </span>
+            </div>
+        </nz-header>
+        <nz-content>
+            <div class="inner-content">
+                <!-- Put your content here -->
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+    </nz-layout>
+</nz-layout>

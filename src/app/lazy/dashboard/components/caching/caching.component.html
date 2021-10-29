@@ -1,0 +1,18 @@
+<nz-table [nzData]="tableData">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contents of tableData">
+            <td>{{contents.name}}</td>
+            <td>{{contents.email}}</td>
+            <td>{{contents.phone}}</td>
+        </tr>
+    </tbody>
+</nz-table>
+<button (click)="updateTable()" nz-button nzType="primary">Update</button>
+<button (click)="deleteTableData()" nz-button nzType="primary" nzDanger style="margin-left: 8px;">Delete</button>

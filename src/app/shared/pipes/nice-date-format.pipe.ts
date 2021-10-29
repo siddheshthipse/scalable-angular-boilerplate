@@ -7,7 +7,7 @@ import * as moment from 'moment';
 export class NiceDateFormatPipe implements PipeTransform {
 
   transform(value:Date): unknown {
-    console.log(moment(value, "YYYYMMDD").fromNow());
+    // console.log(moment(value, "YYYYMMDD").fromNow());
     return moment(value, "YYYYMMDD").fromNow();
   }
 

@@ -10,15 +10,15 @@ export class HttpService {
 
   //Belongs to JSON-Server
   getData(){
-    return this.http.get('http://localhost:8000/posts');
+    return this.http.get('http://localhost:8000/users');
   }
 
-  postData(somedata:any){
-    return this.http.post('http://localhost:8000/posts',somedata);
+  postData(payload:any){
+    return this.http.post('http://localhost:8000/users',payload);
   }
 
   deleteData(id:number){
-    return this.http.delete('http://localhost:8000/posts/'+id);
+    return this.http.delete('http://localhost:8000/users/'+id);
   }
 
   //Error Simulation

@@ -45,11 +45,6 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.email],
       password: ['', Validators.required],
     });
-    
-    // this.abilityservice.getUser().subscribe((returnData:any)=>{
-    //   console.log(returnData);
-    //   this.abilityservice.setUserAbility(returnData.username)
-    // })
   }
 
   selectedLanguage(language: any) {
@@ -64,10 +59,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.authservice.loginUser(this.loginForm.value).subscribe((response)=>{
-    //   console.log('Brute Force');
-    //   console.log(response);
-    // })
     this.authfascade.loginUser(this.loginForm.value);
   }
 }

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Error404Component } from './pages/error404/error404/error404.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,6 +13,8 @@ import { SampleComponent } from './sample/sample.component';
 import { LangTranslateModule } from './lang-translate/lang-translate.module';
 import { Ability, PureAbility } from '@casl/ability';
 import { AbilityModule } from '@casl/angular';
+import { NgZorroAntdModule } from './ng-zorro-antd.module';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +25,8 @@ import { AbilityModule } from '@casl/angular';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    NgZorroAntdModule,
     CoreModule,
     RouterModule,
     LangTranslateModule,

@@ -8,14 +8,20 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { DashboardFascade } from './dashboard.fascade';
 import { AbilityModule } from '@casl/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
+import { CachingComponent } from './components/caching/caching.component';
+import { WorkspaceComponent } from './components/workspace/workspace.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    CachingComponent,
+    WorkspaceComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    NgZorroAntdModule,
     SharedModule,
     RouterModule,
     AbilityModule,

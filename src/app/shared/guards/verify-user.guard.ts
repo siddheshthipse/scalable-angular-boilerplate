@@ -12,22 +12,15 @@ import { EnsureAuthenticated } from 'src/app/core/state-management/auth.action';
 export class VerifyUserGuard implements CanActivate {
   constructor(private store:Store, private router:Router,private authservice:AuthService){}
 
-  canActivate():boolean{
-    let verified:boolean=false;
+  async canActivate():Promise<boolean>{
+    const data=await this.store.dispatch(new EnsureAuthenticated()).toPromise();
+    console.log('This is data');
+    console.log(data)
 
-    this.store.dispatch(new EnsureAuthenticated()).subscribe((returnData)=>{
-      console.log('Coming Late')
-      console.log(returnData);
-      verified=returnData;
-    })
-
-    // console.log(verified);
-    // if(verified){
-    //   console.log('if block verified')
-    //   return verified;
-    // }else{
-    //   return false;
-    // }
-    return true;
+    if(data){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

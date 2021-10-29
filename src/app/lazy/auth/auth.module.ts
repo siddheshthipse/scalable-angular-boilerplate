@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthFascade } from './auth.fascade';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     AuthRoutingModule,
+    NgZorroAntdModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,

@@ -1,22 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/core/services/http.service';
-import { DeleteData, GetData } from 'src/app/core/state-management/app.action';
+import { AddData, DeleteData, GetData } from 'src/app/core/state-management/app.action';
+import { AppState } from 'src/app/core/state-management/app.state';
 import { Logout } from 'src/app/core/state-management/auth.action';
 import { AuthState } from 'src/app/core/state-management/auth.state';
 
 
 @Injectable()
 export class DashboardFascade {
+  @Select (AppState) userData$: Observable<any[]> | undefined;
   constructor(private store: Store,private cookieService:CookieService,private httpservice:HttpService) {}
 
   insert() {
-    this.store.dispatch(new GetData());
+    return this.store.dispatch(new GetData());
+  }
+
+  update(userData:any){
+    return this.store.dispatch(new AddData(userData));
   }
 
   delete(id:number) {
-    this.store.dispatch(new DeleteData(id));
+    return this.store.dispatch(new DeleteData(id));
   }
 
   //-------Related to AuthState--------------------------

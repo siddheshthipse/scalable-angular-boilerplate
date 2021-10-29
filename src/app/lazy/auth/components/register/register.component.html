@@ -1,29 +1,36 @@
-<h3>{{'register.main' | translate}}</h3>
-<h5 style="color: gray;">{{'register.subheading1' | translate}} <a routerLink='/auth/login'>{{'register.subheading2' | translate}}</a></h5>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <p>
-        <label for="email">{{'register.registerform.email' | translate}}</label>
-        <br><br>
-        <input type="email" placeholder="example@abc.com" formControlName="email">
-    </p>
-
-    <p>
-        <label for="username">{{'register.registerform.username' | translate}}</label>
-        <br><br>
-        <input type="text" placeholder="Username" formControlName="username">
-    </p>
-
-    <p>
-        <label for="password">{{'register.registerform.password' | translate}}</label>
-        <br><br>
-        <input type="password" placeholder="Password" formControlName="password">
-    </p>
-
-    <p>
-        <label for="confirmpassword">{{'register.registerform.confirmpassword' | translate}}</label>
-        <br><br>
-        <input type="password" placeholder="Confirm Password" formControlName="confirmpassword">
-    </p>
-
-    <button type="submit">{{'register.registerform.submitbutton' | translate}}</button>
-</form>
+<div nz-row nzJustify="center">
+    <div nz-col nzSpan="12" style="margin-top: 90px;padding: 30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 10px;">
+        <form nz-form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <h4 nz-typography>Creat<span style="color: red;">e</span>&nbsp;Accoun<span style="color: red;">t</span></h4>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                    <input nz-input type="email" formControlName="email" id="email" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">Username</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                    <input nz-input formControlName="username" id="username"/>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+                    <input nz-input type="password" id="password" formControlName="password"/>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="confirmpassword" nzRequired>Confirm Password</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                    <input nz-input type="password" formControlName="confirmpassword" id="checkPassword" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row class="register-area">
+                <nz-form-control [nzSpan]="14" [nzOffset]="6">
+                    <button type="submit" nz-button nzType="primary">Register</button>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </div>
+</div>
