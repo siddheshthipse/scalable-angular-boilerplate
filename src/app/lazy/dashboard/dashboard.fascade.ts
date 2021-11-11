@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/core/services/http.service';
 import { AddData, DeleteData, GetData } from 'src/app/core/state-management/app.action';
 import { AppState } from 'src/app/core/state-management/app.state';
-import { Logout } from 'src/app/core/state-management/auth.action';
+import { Logout, UpdateSetting } from 'src/app/core/state-management/auth.action';
 import { AuthState } from 'src/app/core/state-management/auth.state';
 
 
@@ -29,6 +29,10 @@ export class DashboardFascade {
   //-------Related to AuthState--------------------------
   getLoggedInUserDetails(){
     return this.store.selectSnapshot(AuthState.getUserDetails);
+  }
+
+  changeSetting(formData:{setting:{dateformat:string, language:string}},userid:string){
+    return this.store.dispatch(new UpdateSetting(formData,userid));
   }
 
   logout(){

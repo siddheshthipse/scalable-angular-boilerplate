@@ -1,13 +1,14 @@
-<button (click)="logout()" nz-button nzType="primary">Logout</button>
 <nz-divider nzText="Error Simulation" nzOrientation="left"></nz-divider>
 <button (click)="badRequest()" nz-button nzDanger>400 Error</button>
 <button (click)="resourceNotFound()" nz-button nzDanger style="margin-left: 15px;">404 Error</button>
 <button (click)="internalServerError()" nz-button nzDanger style="margin-left: 15px;">500 Error</button>
-<nz-divider nzText="Socket Handling" nzOrientation="left"></nz-divider>
+<nz-divider nzText="Logout" nzOrientation="left"></nz-divider>
+<button (click)="logout()" nz-button nzType="primary">Logout</button>
+<!-- <nz-divider nzText="Socket Handling" nzOrientation="left"></nz-divider>
 <button (click)="triggerSocket()" nz-button nzType="primary">Setup Socket</button>
 <br><br>
 <input type="text" nz-input nzSize="default" placeholder="Enter some Message" #message style="width: 500px;">
 <button style="margin-top: 8px;margin-left: 8px;" (click)="sendMessage(message)" nz-button nzType="primary">Send
     Message</button>
 <br><br>
-<button (click)="disconnectSocket()" nz-button nzType="primary">Disconnect Socket Connection</button>
+<button (click)="disconnectSocket()" nz-button nzType="primary">Disconnect Socket Connection</button> -->

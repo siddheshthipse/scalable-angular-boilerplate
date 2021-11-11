@@ -1,0 +1,21 @@
+{
+    "login.subheading":"Enter your credentials",
+    "login.email.placeholder":"example@gmail.com",
+    "login.password.placeholder":"Password",
+    "login.rememberme.checkbox":"Remember me",
+    "login.forgotpassword":"Forgot password",
+    "login.button":"Login",
+    "login.outlook":"Sign In with Outlook",
+    "login.createaccount":"Create Account",
+    "register.email":"E-mail",
+    "register.username":"Username",
+    "register.password":"Password",
+    "register.confirmpassword":"Confirm Password",
+    "register.button":"Register",
+    "dashboard.settings.heading":"User Settings",
+    "dashboard.sidebar.heading":"Dashboard",
+    "dashboard.sidebar.admin":"Admin Dashboard",
+    "dashboard.sidebar.workspace":"My Workspace",
+    "dashboard.sidebar.features":"Features",
+    "dashboard.sidebar.settings":"Settings"
+}

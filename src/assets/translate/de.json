@@ -1,0 +1,21 @@
+{
+    "login.subheading":"Anmeldeinformationen eingeben",
+    "login.email.placeholder":"example@gmail.com",
+    "login.password.placeholder":"Passwort",
+    "login.rememberme.checkbox":"Erinnern Sie",
+    "login.forgotpassword":"Passwort vergessen",
+    "login.button":"Anmelde",
+    "login.outlook":"Outlook Anmelde",
+    "login.createaccount":"Konto erstellen",
+    "register.email":"E-mail",
+    "register.username":"Benutzername",
+    "register.password":"Passwort",
+    "register.confirmpassword":"Passwort bestätigen",
+    "register.button":"Eintragen",
+    "dashboard.settings.heading":"Benutzereinstellungen",
+    "dashboard.sidebar.heading":"Dashboard",
+    "dashboard.sidebar.admin":"Admin-Dashboard",
+    "dashboard.sidebar.workspace":"My Workspace",
+    "dashboard.sidebar.features":"Funktionen",
+    "dashboard.sidebar.settings":"Einstellungen"
+}

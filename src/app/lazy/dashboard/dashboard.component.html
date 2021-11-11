@@ -13,17 +13,17 @@
                 <ul>
                     <div *ngIf="'manage' | able: 'all'">
                         <li nz-menu-item nzMatchRouter>
-                            <a>Admin Dashboard</a>
+                            <a></a>{{'dashboard.sidebar.admin' | translate}}
                         </li>
                     </div>
                     <li nz-menu-item nzMatchRouter>
-                        <a routerLink='workspace'>My Workspace</a>
+                        <a routerLink='workspace'></a>{{'dashboard.sidebar.workspace' | translate}}
                     </li>
                     <li nz-menu-item nzMatchRouter>
-                        <a routerLink='caching'>Features</a>
+                        <a routerLink='caching'></a>{{'dashboard.sidebar.features' | translate}}
                     </li>
                     <li nz-menu-item nzMatchRouter>
-                        <a>Issue Tracker</a>
+                        <a routerLink='settings'></a>{{'dashboard.sidebar.settings' | translate}}
                     </li>
                 </ul>
             </li>

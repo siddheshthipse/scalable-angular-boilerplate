@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { NiceDateFormatPipe } from './pipes/nice-date-format.pipe';
 import {RouterModule} from '@angular/router';
 import { NiceDeadlineFormatPipe } from './pipes/nice-deadline-format.pipe';
+import { DatePreferencePipe } from './pipes/date-preference.pipe';
 
 
 @NgModule({
   declarations: [
     NiceDateFormatPipe,
-    NiceDeadlineFormatPipe
+    NiceDeadlineFormatPipe,
+    DatePreferencePipe
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { NiceDeadlineFormatPipe } from './pipes/nice-deadline-format.pipe';
   ],
   exports:[
     NiceDateFormatPipe,
-    NiceDeadlineFormatPipe
+    NiceDeadlineFormatPipe,
+    DatePreferencePipe
   ]
 })
 export class SharedModule { }

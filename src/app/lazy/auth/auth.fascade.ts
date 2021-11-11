@@ -11,7 +11,7 @@ export class AuthFascade {
   constructor(private store: Store,private router:Router,private cookieService:CookieService) {}
 
   createNewUser(payload:any){
-    this.store.dispatch(new Register(payload));
+    return this.store.dispatch(new Register(payload));
   }
 
   loginUser(payload:any){
@@ -21,7 +21,7 @@ export class AuthFascade {
       if(returnData.authstate.email){
         this.cookieService.set('token',this.userCredentials.token,{expires:0.1,path:'/'});
         this.cookieService.set('email',this.userCredentials.email,{expires:0.1,path:'/'});
-        this.router.navigate(['']);
+        this.router.navigate(['/workspace']);
       }
     },(error)=>{
       console.log('Some error in logging in the user');

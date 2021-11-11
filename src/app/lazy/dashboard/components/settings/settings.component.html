@@ -1,0 +1,26 @@
+<h4 nz-typography>{{'dashboard.settings.heading' | translate}}</h4>
+
+
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+    <p>
+        Date
+        <nz-select ngModel={{currentDateFormat}} nzPlaceHolder="Choose Date Format" formControlName="dateformat" style="margin-left: 8px;">
+            <nz-option nzValue="M/d/yy" nzLabel="1/26/21"></nz-option>
+            <nz-option nzValue="d/M/yy" nzLabel="26/1/21"></nz-option>
+            <nz-option nzValue="MMM d, y" nzLabel="Jan 26, 2021"></nz-option>
+            <nz-option nzValue="EEEE, MMMM d, y" nzLabel="Tuesday, January 26, 2021"></nz-option>
+        </nz-select>
+    </p>
+    <p>
+        Lang
+        <nz-select ngModel={{currentLanguage}} nzPlaceHolder="Choose Language" formControlName="language" style="margin-left: 8px;">
+            <nz-option nzValue="en" nzLabel="English"></nz-option>
+            <nz-option nzValue="de" nzLabel="German"></nz-option>
+        </nz-select>
+    </p>
+    <button type="submit" nz-button nzType="primary">Update</button>
+</form>
+<br><br>
+<p>
+    The date is:- <strong>{{ sampleDate | datePreference}}</strong>
+</p>

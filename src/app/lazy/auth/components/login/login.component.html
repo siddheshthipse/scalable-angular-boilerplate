@@ -1,7 +1,7 @@
 <div nz-row nzJustify="center">
     <div nz-col nzSpan="7" style="margin-top: 90px;padding: 30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 10px;">
         <h4 nz-typography>Project<span style="color: red;">X</span></h4>
-        <h5 nz-typography style="color: gray;">Please login to continue</h5>
+        <h5 nz-typography style="color: gray;">{{'login.subheading' | translate}}</h5>
         <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
             <nz-form-item>
                 <nz-form-control nzErrorTip="Please enter you Email">
@@ -20,18 +20,18 @@
             <div nz-row class="login-form-margin">
                 <div nz-col [nzSpan]="12">
                     <label nz-checkbox>
-                        <span>Remember me</span>
+                        <span>{{'login.rememberme.checkbox' | translate}}</span>
                     </label>
                 </div>
                 <div nz-col [nzSpan]="12">
-                    <a class="login-form-forgot">Forgot password</a>
+                    <a class="login-form-forgot">{{'login.forgotpassword' | translate}}</a>
                 </div>
             </div>
-            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">{{'login.button' | translate}}</button>
             <br>
-            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" style="background-color: #026FC0;border-color: #026FC0;"><a href="http://localhost:3000/auth/outlook">Sign In with Outlook</a></button>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" style="background-color: #026FC0;border-color: #026FC0;"><a href="http://localhost:3000/auth/outlook">{{'login.outlook' | translate}}</a></button>
             Or
-            <a routerLink='/auth/register'>Create Account</a>
+            <a routerLink='/auth/register'>{{'login.createaccount' | translate}}</a>
         </form>
     </div>
 </div>

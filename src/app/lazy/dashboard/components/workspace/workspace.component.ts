@@ -26,15 +26,13 @@ export class WorkspaceComponent implements OnInit {
     private logger: NGXLogger,
     private dfascade: DashboardFascade,
     private router: Router,
-    private abilityservice:AbilityService,
     private socketservice:SocketService,
     private modal:NzModalService
   ) {}
 
   ngOnInit(): void {
     this.logger.log('Welcome to Dashboard');
-    this.loggedInUser=this.dfascade.getLoggedInUserDetails()
-    this.assignAbilities(this.loggedInUser);
+
 
     //Helper Function Code
     // this.test();
@@ -53,10 +51,7 @@ export class WorkspaceComponent implements OnInit {
   disconnectSocket(){
     this.socketservice.endSocketConnection();
   }
-  //CASL Angular
-  assignAbilities(user:any){
-    this.abilityservice.setUserAbility(user.email)
-  }
+  
   //This is temporary code
 
   logout() {

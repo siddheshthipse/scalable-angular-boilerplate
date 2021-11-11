@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CachingComponent } from './components/caching/caching.component';
+import { SettingsComponent } from './components/settings/settings.component';
 import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { DashboardComponent } from './dashboard.component';
 
@@ -11,12 +12,19 @@ const routes: Routes = [
     children: [
         {
           path: 'workspace',
-          component: WorkspaceComponent
+          component: WorkspaceComponent,
+          data:{title:'Workspace | Dashboard'}
         },
         {
            path: 'caching',
-           component: CachingComponent
-        }
+           component: CachingComponent,
+           data:{title:'Features | Dashboard'}
+        },
+        {
+          path: 'settings',
+          component: SettingsComponent,
+          data:{title:'User Settings | Dashboard'}
+       }
     ]
   }
 ]

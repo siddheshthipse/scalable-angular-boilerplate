@@ -33,6 +33,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngxs/logger-plugin": "^3.7.2",
     "@ngxs/store": "^3.7.2",
+    "date-fns": "^2.25.0",
     "export-from-json": "^1.4.1",
     "husky-init": "^7.0.0",
     "lodash": "^4.17.21",

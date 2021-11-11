@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SocketService } from 'src/app/core/services/socket.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { AuthFascade } from '../../auth.fascade';
 
 @Component({
@@ -10,7 +10,7 @@ import { AuthFascade } from '../../auth.fascade';
 })
 export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({})
-  constructor(private fb:FormBuilder,private authfascade:AuthFascade) { }
+  constructor(private fb:FormBuilder,private authfascade:AuthFascade, private modal: NzModalService) { }
 
   ngOnInit(): void {
     this.registerForm =  this.fb.group({
@@ -22,7 +22,12 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    this.authfascade.createNewUser(this.registerForm.value);
+    if(this.authfascade.createNewUser(this.registerForm.value)){
+      this.modal.success({
+        nzTitle: 'Account created successfully',
+        nzOkText: 'Okay'
+      });
+    }
     this.registerForm.reset();
   }
 }

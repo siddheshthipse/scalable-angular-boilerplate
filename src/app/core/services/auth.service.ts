@@ -14,6 +14,10 @@ export class AuthService {
     return this.http.post(`${this.apiURL}/users`,body,{observe:'body'})
   }
 
+  changeSettings(body:any, userid:string){
+    return this.http.put(`${this.apiURL}/changelang/${userid}`,body,{observe:'body'});
+  }
+
   loginUser(body:{email:string,password:string}){
     return this.http.post<UserCredentials>(`${this.apiURL}/login`,body,{observe:'body'});
   }
