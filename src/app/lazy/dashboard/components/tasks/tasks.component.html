@@ -1,0 +1,21 @@
+<div nz-row nzJustify="space-between">
+    <div nz-col nzSpan="3">
+        <h3>All Tasks</h3>
+    </div>
+    <div nz-col nzSpan="3">
+        <button nz-button nzType="primary" (click)="open()" style="margin-left: 10px;">Create Task</button>
+        <nz-drawer [nzClosable]="false" [nzVisible]="visible" [nzWidth]="630" nzPlacement="right" nzTitle="Create Task"
+            (nzOnClose)="close()">
+            <ng-container *nzDrawerContent>
+                <div *ngIf="flag3">
+                    <app-json-form [schema]="formSchema" [button]="formButton" (formDataEvent)="onFormSubmit($event)">
+                    </app-json-form>
+                </div>
+            </ng-container>
+        </nz-drawer>
+    </div>
+</div>
+<div nz-row style="margin-top: 5px;" *ngIf="flag1 && flag2">
+    <app-dynamic-table [columns]="tableColumns" [data]="tableData" [pageSize]="pageSize"></app-dynamic-table>
+</div>
+<!-- <a routerLink="details">Task Details</a> -->

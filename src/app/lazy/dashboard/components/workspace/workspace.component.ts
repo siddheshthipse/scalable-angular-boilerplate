@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MsalService } from '@azure/msal-angular';
 import { Ability, AbilityBuilder } from '@casl/ability';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NGXLogger } from 'ngx-logger';
@@ -20,14 +21,16 @@ export class WorkspaceComponent implements OnInit {
   userflag:boolean=false;
   assignedDate = new Date(2021, 9, 1, 9, 33, 30, 0);
   deadlineDate = new Date(2021, 9, 31, 23, 0, 0, 0);
+  sampleDate: Date = new Date();
 
   constructor(
-    private hs: HttpService,
+    private httpservice: HttpService,
     private logger: NGXLogger,
     private dfascade: DashboardFascade,
     private router: Router,
     private socketservice:SocketService,
-    private modal:NzModalService
+    private modal:NzModalService,
+    private msalService:MsalService
   ) {}
 
   ngOnInit(): void {
@@ -40,16 +43,23 @@ export class WorkspaceComponent implements OnInit {
 
   
   //SocketIO
-  triggerSocket(){
-    this.socketservice.setupSocketConnection();
-  }
+  // triggerSocket(){
+  //   this.socketservice.setupSocketConnection();
+  // }
 
-  sendMessage(message:any){
-    this.socketservice.sendMessage(message.value);
-  }
+  // sendMessage(message:any){
+  //   this.socketservice.sendMessage(message.value);
+  // }
 
-  disconnectSocket(){
-    this.socketservice.endSocketConnection();
+  // disconnectSocket(){
+  //   this.socketservice.endSocketConnection();
+  // }
+
+  getNotification(){
+    console.log('Into function');
+    this.httpservice.triggerNotification().subscribe((res)=>{
+      console.log(res);
+    });
   }
   
   //This is temporary code
@@ -70,21 +80,39 @@ export class WorkspaceComponent implements OnInit {
     })
   }
 
-  triggerError() {
-    throw Error('An error has been triggered');
+  outlookLogout(){
+    this.modal.confirm({
+      nzTitle: 'Are you sure you want to logout',
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOnOk: () => {
+        this.msalService.logout().subscribe((res)=>{
+          console.log(res);
+        })
+        this.router.navigate(['auth/login']);
+      },
+      nzCancelText: 'No',
+      nzOnCancel: () => {
+        return;
+      }
+    })
   }
 
-  badRequest() {
-    this.dfascade.badRequestError();
-  }
+  // triggerError() {
+  //   throw Error('An error has been triggered');
+  // }
 
-  resourceNotFound() {
-    this.dfascade.resourceNotFoundError();
-  }
+  // badRequest() {
+  //   this.dfascade.badRequestError();
+  // }
 
-  internalServerError() {
-    this.dfascade.internalServerError();
-  }
+  // resourceNotFound() {
+  //   this.dfascade.resourceNotFoundError();
+  // }
+
+  // internalServerError() {
+  //   this.dfascade.internalServerError();
+  // }
 
   async test() {
     const data = await fetch('https://jsonplaceholder.typicode.com/users');

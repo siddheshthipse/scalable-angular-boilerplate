@@ -1,6 +1,6 @@
 import { ErrorHandler, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorhandlingService } from './errorhandler/errorhandling.service';
 import { HttpService } from './services/http.service';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
@@ -12,44 +12,45 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { AuthState } from './state-management/auth.state';
 import { EnsureModuleLoadedOnceGuard } from './core-guard/ensure-module-loaded-once.guard';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-
+import { DynamicDataState } from './state-management/dynamicdata.state';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     HttpClientModule,
-    NgxsModule.forRoot([AppState,AuthState], {
+    NgxsModule.forRoot([AppState, AuthState, DynamicDataState], {
       developmentMode: !environment.production,
     }),
-    NgxsLoggerPluginModule.forRoot({disabled:environment.disableloggerplugin}),
+    NgxsLoggerPluginModule.forRoot({
+      disabled: environment.disableloggerplugin,
+    }),
     LoggerModule.forRoot({
       serverLoggingUrl: environment.serverLoggingUrl,
       level: NgxLoggerLevel.TRACE,
-      serverLogLevel: NgxLoggerLevel.WARN,
-      disableConsoleLogging: environment.disableConsoleLogging
+      serverLogLevel: NgxLoggerLevel.ERROR,
+      disableConsoleLogging: environment.disableConsoleLogging,
     }),
   ],
-  providers:[
+  providers: [
     HttpService,
     {
-      provide:ErrorHandler,
-      useClass:ErrorhandlingService
+      provide: ErrorHandler,
+      useClass: ErrorhandlingService,
     },
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:ErrorInterceptor,
-      multi:true
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
     },
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:AuthInterceptor,
-      multi:true
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
     },
-  ]
+  ],
 })
-export class CoreModule extends EnsureModuleLoadedOnceGuard{ 
+export class CoreModule extends EnsureModuleLoadedOnceGuard {
   // Looks for the module in the parent injector to see if it's already been loaded (only want it loaded once)
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     super(parentModule);

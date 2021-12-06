@@ -13,7 +13,7 @@
                 <ul>
                     <div *ngIf="'manage' | able: 'all'">
                         <li nz-menu-item nzMatchRouter>
-                            <a></a>{{'dashboard.sidebar.admin' | translate}}
+                            <a routerLink='admin'></a>{{'dashboard.sidebar.admin' | translate}}
                         </li>
                     </div>
                     <li nz-menu-item nzMatchRouter>
@@ -23,31 +23,46 @@
                         <a routerLink='caching'></a>{{'dashboard.sidebar.features' | translate}}
                     </li>
                     <li nz-menu-item nzMatchRouter>
+                        <a routerLink='tasks'></a>{{'dashboard.sidebar.tasks' | translate}}
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink='analytics'></a>{{'dashboard.sidebar.analytics' | translate}}
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
                         <a routerLink='settings'></a>{{'dashboard.sidebar.settings' | translate}}
                     </li>
                 </ul>
             </li>
-            <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
+            <!-- <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
                 <ul>
                     <li nz-menu-item nzMatchRouter>
                         <a>Basic Form</a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </nz-sider>
     <nz-layout>
         <nz-header>
             <div class="app-header">
-                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-                    <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
-                </span>
+                <div nz-row nzJustify="space-between">
+                    <div nz-col nzSpan="4"><span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+                        <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+                    </span></div>
+                    <div nz-col nzSpan="5"></div>
+                    <div nz-col nzSpan="5"></div>
+                    <div nz-col nzSpan="2"><app-notification-bell></app-notification-bell></div>
+                </div>
             </div>
         </nz-header>
         <nz-content>
             <div class="inner-content">
                 <!-- Put your content here -->
-                <router-outlet></router-outlet>
+                <app-ng-dynamic-breadcrumb [bgColor]="'#FFFFFF'" [fontSize]="'14px'" [fontColor]="'#0275d8'"
+                    [lastLinkColor]="'#808080'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+                <div style="padding-left: 14px;padding-right: 14px;">
+                    <router-outlet></router-outlet>
+                </div>
             </div>
         </nz-content>
     </nz-layout>

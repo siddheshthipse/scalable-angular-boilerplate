@@ -14,8 +14,10 @@
     "register.button":"Register",
     "dashboard.settings.heading":"User Settings",
     "dashboard.sidebar.heading":"Dashboard",
-    "dashboard.sidebar.admin":"Admin Dashboard",
+    "dashboard.sidebar.admin":"Admin",
     "dashboard.sidebar.workspace":"My Workspace",
     "dashboard.sidebar.features":"Features",
-    "dashboard.sidebar.settings":"Settings"
+    "dashboard.sidebar.settings":"Settings",
+    "dashboard.sidebar.tasks":"Tasks",
+    "dashboard.sidebar.analytics":"Analytics"
 }

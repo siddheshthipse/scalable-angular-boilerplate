@@ -1,9 +1,10 @@
-<nz-divider nzText="Error Simulation" nzOrientation="left"></nz-divider>
-<button (click)="badRequest()" nz-button nzDanger>400 Error</button>
-<button (click)="resourceNotFound()" nz-button nzDanger style="margin-left: 15px;">404 Error</button>
-<button (click)="internalServerError()" nz-button nzDanger style="margin-left: 15px;">500 Error</button>
-<nz-divider nzText="Logout" nzOrientation="left"></nz-divider>
-<button (click)="logout()" nz-button nzType="primary">Logout</button>
+<nz-divider nzText="User Settings" nzOrientation="left"></nz-divider>
+<p>
+    Date is:- <strong>{{sampleDate | datePreference}}</strong>
+</p>
+<p>
+    Timestamp is:- <strong>{{sampleDate | timezonePreference}}</strong>
+</p>
 <!-- <nz-divider nzText="Socket Handling" nzOrientation="left"></nz-divider>
 <button (click)="triggerSocket()" nz-button nzType="primary">Setup Socket</button>
 <br><br>
@@ -12,3 +13,6 @@
     Message</button>
 <br><br>
 <button (click)="disconnectSocket()" nz-button nzType="primary">Disconnect Socket Connection</button> -->
+<button nz-button nzType="dashed" (click)="getNotification()">Get Notification</button>
+<button (click)="logout()" nz-button nzDanger>Logout</button>
+<!-- <button (click)="outlookLogout()" nz-button nzType="primary" style="margin-left: 15px;">Outlook Logout</button> -->

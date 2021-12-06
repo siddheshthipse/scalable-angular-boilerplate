@@ -37,11 +37,11 @@ export class ErrorInterceptor implements HttpInterceptor {
             break;
           case 401:
             this.theMessage =
-              '401: The user does not have permissions (token, user name, password error).';
+              '401: Email ID does not exist, try Signing Up';
             break;
           case 403:
             this.theMessage =
-              '403: Users are authorized, but access is prohibited.';
+              '403: Email ID already exists, try Signing In';
             break;
           case 404:
             this.theMessage =
@@ -56,12 +56,15 @@ export class ErrorInterceptor implements HttpInterceptor {
               '503: The service is unavailable and the server is temporarily overloaded or maintained.';
             break;
           default:
+            this.theMessage='Not an Error';
             break;
         }
-        this.modal.error({
+        if(this.theMessage!='Not an Error'){
+          this.modal.error({
           nzTitle: this.theMessage,
           nzOkText: null,
         });
+        }
         return throwError(this.theMessage);
       })
     );

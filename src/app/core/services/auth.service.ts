@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { UserCredentials } from '../models/usercredentials.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  apiURL:string='http://localhost:3000';
+  apiURL:string= environment.NODE_SERVER_URL;
   constructor(private http:HttpClient) { }
 
   //Belongs to NodeJS
@@ -15,7 +16,7 @@ export class AuthService {
   }
 
   changeSettings(body:any, userid:string){
-    return this.http.put(`${this.apiURL}/changelang/${userid}`,body,{observe:'body'});
+    return this.http.put<UserCredentials>(`${this.apiURL}/changelang/${userid}`,body,{observe:'body'});
   }
 
   loginUser(body:{email:string,password:string}){
@@ -26,9 +27,9 @@ export class AuthService {
     return this.http.get(`${this.apiURL}/verifyuser`);
   }
 
-  outlook(){
-    return this.http.get(`${this.apiURL}/auth/outlook`);
-  }
+  // outlook(){
+  //   return this.http.get(`${this.apiURL}/auth/outlook`);
+  // }
 
   // backendCookie(){
   //   return this.http.get('http://localhost:3000/signin');

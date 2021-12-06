@@ -1,9 +1,9 @@
-<h4 nz-typography>{{'dashboard.settings.heading' | translate}}</h4>
+<!-- <h4 nz-typography>{{'dashboard.settings.heading' | translate}}</h4> -->
 
 
-<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()" style="margin-top: 20px;">
     <p>
-        Date
+        Date Preference
         <nz-select ngModel={{currentDateFormat}} nzPlaceHolder="Choose Date Format" formControlName="dateformat" style="margin-left: 8px;">
             <nz-option nzValue="M/d/yy" nzLabel="1/26/21"></nz-option>
             <nz-option nzValue="d/M/yy" nzLabel="26/1/21"></nz-option>
@@ -12,15 +12,27 @@
         </nz-select>
     </p>
     <p>
-        Lang
+        Language
         <nz-select ngModel={{currentLanguage}} nzPlaceHolder="Choose Language" formControlName="language" style="margin-left: 8px;">
             <nz-option nzValue="en" nzLabel="English"></nz-option>
             <nz-option nzValue="de" nzLabel="German"></nz-option>
         </nz-select>
     </p>
+    <p>
+        Timezone
+        <nz-select ngModel={{currentTimezone}} nzPlaceHolder="Choose Timezone" formControlName="timezone" style="margin-left: 8px;">
+            <nz-option nzValue="Asia/Kolkata" nzLabel="Asia/Kolkata"></nz-option>
+            <nz-option nzValue="Asia/Qatar" nzLabel="Asia/Qatar"></nz-option>
+            <nz-option nzValue="America/Phoenix" nzLabel="America/Phoenix"></nz-option>
+            <nz-option nzValue="Australia/Perth" nzLabel="Australia/Perth"></nz-option>
+        </nz-select>
+    </p>
     <button type="submit" nz-button nzType="primary">Update</button>
 </form>
 <br><br>
-<p>
-    The date is:- <strong>{{ sampleDate | datePreference}}</strong>
+<!-- <p>
+    Date is:- <strong>{{sampleDate | datePreference}}</strong>
 </p>
+<p>
+    Timestamp is:- <strong>{{sampleDate | timezonePreference}}</strong>
+</p> -->

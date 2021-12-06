@@ -10,11 +10,13 @@ import { DashboardFascade } from '../../dashboard.fascade';
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent implements OnInit {
-  sampleDate: Date = new Date();
+  utcDate:string='23/11/2021 4:20:30 AM';
+  
   settingsForm = new FormGroup({});
 
   currentDateFormat:string | undefined;
   currentLanguage:string | undefined;
+  currentTimezone:string | undefined;
 
   userInfo: any;
   constructor(
@@ -27,6 +29,7 @@ export class SettingsComponent implements OnInit {
     this.settingsForm = this.formBuilder.group({
       dateformat: [''],
       language: [''],
+      timezone:['']
     });
 
     this.userInfo = this.dfascade.getLoggedInUserDetails();
@@ -34,11 +37,8 @@ export class SettingsComponent implements OnInit {
 
     this.currentDateFormat=this.userInfo.setting.dateformat;
     this.currentLanguage=this.userInfo.setting.language;
+    this.currentTimezone=this.userInfo.setting.timezone;
   }
-
-  // changeLanguage(lang:string){
-  //   this.langtranslate.selectedLanguage.next(lang);
-  // }
 
   onSubmit() {
     console.log(this.userInfo._id);
@@ -47,13 +47,13 @@ export class SettingsComponent implements OnInit {
       setting: {
         dateformat: this.settingsForm.value.dateformat,
         language: this.settingsForm.value.language,
+        timezone:this.settingsForm.value.timezone
       },
     };
     
     if(this.dfascade.changeSetting(updateObj,this.userInfo._id)){
       this.modal.success({
         nzTitle: 'Settings updated',
-        nzContent: 'Please login again to see the applied changes',
         nzOkText:'Okay'
       });
     }

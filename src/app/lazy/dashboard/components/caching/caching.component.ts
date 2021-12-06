@@ -12,10 +12,12 @@ export class CachingComponent implements OnInit {
   constructor(private dfascade:DashboardFascade) { }
 
   ngOnInit(): void {
-    this.dfascade.insert().subscribe((res:any)=>{
-      this.tableData=res.appstate.data
-      console.log(this.tableData)
-    });
+    // this.dfascade.insert().subscribe((res:any)=>{
+    //   this.tableData=res.appstate.data
+    //   console.log(this.tableData)
+    // });
+
+    console.log('Caching Component');
   }
 
   updateTable(){

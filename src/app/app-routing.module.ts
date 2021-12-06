@@ -13,7 +13,7 @@ const routes: Routes = [
     data:{title:'Welcome to ProjectX'}
   },
   {
-    path: '',
+    path: 'dashboard',
     loadChildren: () =>
       import('./lazy/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
@@ -25,8 +25,9 @@ const routes: Routes = [
     path:'sample',
     component:SampleComponent,
     data:{title:'Sample'},
-    canActivate:[VerifyUserGuard]
+    canActivate:[]
   },
+  { path: '',   redirectTo: 'dashboard', pathMatch: 'full' },
   {
     path:'**',
     component:Error404Component

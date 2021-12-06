@@ -3,9 +3,14 @@ export class Login {
   constructor(public payload: { email: string, password:string }) {}
 }
 
+export class OutlookLogin{
+  static readonly type= '[Ologin] Auth';
+  constructor(public payload:{outlookemail:string}){}
+}
+
 export class UpdateSetting {
   static readonly type= '[Update] Setting';
-  constructor(public payload:{setting:{ language:string, dateformat:string, }},public userid:string){}
+  constructor(public payload:{setting:{ language:string, dateformat:string, timezone:string }},public userid:string){}
 }
 
 export class Logout {
@@ -15,6 +20,11 @@ export class Logout {
 export class Register{
   static readonly type='[Register] Auth';
   constructor(public payload:any){};
+}
+
+export class OutlookRegister{
+  static readonly type='[Oregister] Auth';
+  constructor(public payload:{outlookemail:string}){}
 }
 
 export class GetCookie{

@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class LangTranslateService {
 
   constructor() {
-    console.log('Scott Lang got triggered');
+    console.log('Language Service');
   }
 
   selectedLanguage=new BehaviorSubject('en');

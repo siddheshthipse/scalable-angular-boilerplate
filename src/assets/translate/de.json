@@ -14,8 +14,10 @@
     "register.button":"Eintragen",
     "dashboard.settings.heading":"Benutzereinstellungen",
     "dashboard.sidebar.heading":"Dashboard",
-    "dashboard.sidebar.admin":"Admin-Dashboard",
+    "dashboard.sidebar.admin":"Admin",
     "dashboard.sidebar.workspace":"My Workspace",
     "dashboard.sidebar.features":"Funktionen",
-    "dashboard.sidebar.settings":"Einstellungen"
+    "dashboard.sidebar.settings":"Einstellungen",
+    "dashboard.sidebar.tasks":"Aufgaben",
+    "dashboard.sidebar.analytics":"Analytik"
 }

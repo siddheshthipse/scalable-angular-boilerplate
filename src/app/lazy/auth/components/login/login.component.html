@@ -4,14 +4,14 @@
         <h5 nz-typography style="color: gray;">{{'login.subheading' | translate}}</h5>
         <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
             <nz-form-item>
-                <nz-form-control nzErrorTip="Please enter you Email">
+                <nz-form-control nzErrorTip="Please enter a valid Email">
                     <nz-input-group nzPrefixIcon="user">
                         <input type="email" nz-input formControlName="email" placeholder="example@gmail.com" />
                     </nz-input-group>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
-                <nz-form-control nzErrorTip="Please enter you Password">
+                <nz-form-control nzErrorTip="Please enter your Password">
                     <nz-input-group nzPrefixIcon="lock">
                         <input type="password" nz-input formControlName="password" placeholder="Password" />
                     </nz-input-group>
@@ -28,10 +28,11 @@
                 </div>
             </div>
             <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">{{'login.button' | translate}}</button>
-            <br>
-            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" style="background-color: #026FC0;border-color: #026FC0;"><a href="http://localhost:3000/auth/outlook">{{'login.outlook' | translate}}</a></button>
+        </form>
+        <div style="max-width: 300px;">
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" style="background-color: #026FC0;border-color: #026FC0;" (click)="outlookLogin()">Sign In with Outlook</button>
             Or
             <a routerLink='/auth/register'>{{'login.createaccount' | translate}}</a>
-        </form>
+        </div>
     </div>
 </div>

@@ -3,8 +3,9 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { UserCredentials } from '../models/usercredentials.interface';
 import { AuthService } from '../services/auth.service';
-import { EnsureAuthenticated, GetCookie, Login, Logout, Register, UpdateSetting } from './auth.action';
+import { EnsureAuthenticated, GetCookie, Login, Logout, OutlookLogin, OutlookRegister, Register, UpdateSetting } from './auth.action';
 import { CookieService } from 'ngx-cookie-service';
+import { OutlookService } from '../services/outlook.service';
 
 export interface AuthStateModel {
   token: string | null;
@@ -24,7 +25,7 @@ export interface AuthStateModel {
 })
 @Injectable()
 export class AuthState {
-  constructor(private authservice:AuthService,private cookieService:CookieService){}
+  constructor(private authservice:AuthService,private cookieService:CookieService,private outlookservice:OutlookService){}
 
   @Selector()
   static isAuthenticated(state: AuthStateModel): boolean {
@@ -40,10 +41,13 @@ export class AuthState {
   getCookie(ctx:StateContext<AuthStateModel>){
     if(!!this.cookieService.get('token')){
       const state=ctx.getState();
+      console.log('Get Cookie got triggered');
       ctx.setState({
         ...state,
         token:this.cookieService.get('token'),
-        email:this.cookieService.get('email')
+        email:this.cookieService.get('email'),
+        _id:this.cookieService.get('_id'),
+        setting:JSON.parse(this.cookieService.get('setting'))
       })
     }
   }
@@ -66,6 +70,23 @@ export class AuthState {
     }))
   }
 
+  @Action(OutlookLogin)
+  outlookLogin(ctx:StateContext<AuthStateModel>,{payload}:OutlookLogin){
+    return this.outlookservice.login(payload).pipe(tap((returnData:UserCredentials)=>{
+      console.log('Outlook login data coming from server');
+      console.log(returnData);
+
+      const state=ctx.getState();
+      ctx.setState({
+        ...state,
+        token:returnData.tokens[0].token,
+        email:returnData.email,
+        setting:returnData.setting,
+        _id:returnData._id
+      })
+    }))
+  }
+
   @Action(Logout)
   logout(ctx:StateContext<AuthStateModel>){
     const state=ctx.getState();
@@ -74,6 +95,8 @@ export class AuthState {
       ...state,
       token:null,
       email:null,
+      setting:null,
+      _id:null
     })
   }
 
@@ -85,12 +108,30 @@ export class AuthState {
     })
   }
 
-  @Action(UpdateSetting)
-  updateSetting(ctx:StateContext<AuthStateModel>,{payload,userid}:UpdateSetting){
-    return this.authservice.changeSettings(payload,userid).subscribe((returnData)=>{
-      console.log('Settings Updated');
+  @Action(OutlookRegister)
+  outlookRegister(ctx:StateContext<AuthStateModel>,{payload}:OutlookRegister){
+    return this.outlookservice.register(payload).subscribe((returnData)=>{
+      console.log('Outlook user registered successfully');
       console.log(returnData);
     })
+  }
+
+  @Action(UpdateSetting)
+  updateSetting(ctx:StateContext<AuthStateModel>,{payload,userid}:UpdateSetting){
+    return this.authservice.changeSettings(payload,userid).pipe(tap((returnData:UserCredentials)=>{
+      console.log('Expected updated data');
+      console.log(returnData);
+
+      const state=ctx.getState();
+
+      ctx.setState({
+        ...state,
+        _id:returnData._id,
+        token:returnData.tokens[0].token,
+        email:returnData.email,
+        setting:returnData.setting
+      })
+    }))
   }
 
   @Action(EnsureAuthenticated)
